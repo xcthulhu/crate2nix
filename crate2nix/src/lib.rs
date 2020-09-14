@@ -161,6 +161,7 @@ fn cargo_metadata(config: &GenerateConfig, cargo_toml: &PathBuf) -> Result<Metad
     let mut cmd = cargo_metadata::MetadataCommand::new();
     let mut other_options = config.other_metadata_options.clone();
     other_options.push("--locked".into());
+    other_options.push("--offline".into());
     cmd.manifest_path(&cargo_toml).other_options(&other_options);
     cmd.exec().map_err(|e| {
         format_err!(
